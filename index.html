@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your Scratch Token</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        ol {
+            font-size: 1.2em;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border-radius: 4px;
+            font-size: 1.1em;
+            color: #555;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 1em;
+            overflow-x: auto;
+        }
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>How to Get Your Scratch Token</h1>
+</header>
+
+<section>
+    <h2>Instructions</h2>
+    <p>Follow the steps below to get your Scratch token. This is for your own Scratch account and is safe as long as you keep it private. You can use this token to interact with the Scratch API, but never share it with anyone else.</p>
+    <ol>
+        <li>Open your Scratch profile page in your browser.</li>
+        <li>Open the <strong>Developer Tools</strong> in your browser (Right-click > Inspect or press F12).</li>
+        <li>Go to the <strong>Network</strong> tab in the Developer Tools.</li>
+        <li>In the search bar, type your username to filter the network requests.</li>
+        <li>Look for a request with your username, then right-click on it.</li>
+        <li>Hover over <strong>Copy</strong> and then click on <strong>Copy as Powershell</strong>.</li>
+        <li>Paste the copied Powershell script into the input field below.</li>
+    </ol>
+
+    <h3>Paste your copied input here:</h3>
+    <textarea id="inputField" rows="10" cols="80" placeholder="Paste your Powershell script here..."></textarea><br><br>
+    <button onclick="extractToken()">Extract Token</button>
+
+    <h3>Extracted Token:</h3>
+    <pre id="tokenOutput">Token will appear here after extraction.</pre>
+</section>
+
+<footer>
+    <p>&copy; 2025 Ocelot-IDE</p>
+</footer>
+
+<script>
+    function extractToken() {
+        const input = document.getElementById("inputField").value;
+        const regex = /access_token=([a-zA-Z0-9%_]+)[&\s]/;
+        const match = input.match(regex);
+
+        if (match) {
+            document.getElementById("tokenOutput").textContent = `Your Scratch Token: ${match[1]}`;
+        } else {
+            document.getElementById("tokenOutput").textContent = "No token found. Please ensure the input is correct.";
+        }
+    }
+</script>
+
+</body>
+</html>
